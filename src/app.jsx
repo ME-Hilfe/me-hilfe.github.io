@@ -46,6 +46,15 @@ export default function App() {
     console.log('onInputChange', formInput)
   }, [formInput, setFormInput])
   
+
+  const onCheckboxChange = useCallback((ev) => {
+    
+    setFormInput({
+      ...formInput,
+      [ev.target.name]: ev.target.checked
+    })
+  }, [formInput, setFormInput])
+
   
   if(pdf) {
     console.log('PDF SRC:', pdf)
@@ -58,17 +67,15 @@ export default function App() {
         <h1 style={{marginTop: "3em"}}>Aufnahmeantrag in den Verein ME Hilfe</h1>
 
         <p>
-          Mit dem folgenden Formular möchten wir dir den Aufnahmeprozess so weit
-          wie möglich vereinfachen.
+        Mit dem folgenden Formular möchten wir dir den Aufnahmeprozess, so weit wie möglich, vereinfachen. 
         </p>
+
         <p>
-          Nachdem du deine Daten in das Formular eingetragen hast, erstellen wir
-          dir ein vorausgefülltes PDF welches nur noch ausgedruckt und
-          unterschrieben an uns zugesandt werden muss.
+        Nachdem du deine Daten in das Formular eingetragen hast, erstellen wir dir ein vorausgefülltes PDF, welches nur noch ausgedruckt, unterschrieben und an uns zugesandt werden muss. 
         </p>
         
         <p>
-          Deine persönlichen Daten die du hier eingibst werden nicht gespeichert.
+        Deine persönlichen Daten, die du hier eingibst, werden weder gespeichert noch an einen Server übermittelt.
         </p>
 
         <form onSubmit={onSubmit}>
@@ -102,8 +109,21 @@ export default function App() {
             <input type="text" name="email" required="required" autoComplete="email" disabled={isProcessing} onChange={onInputChange}/>
           </label>
 
+          <label>
+            Social-Media <small>(optional)</small>
+            <input type="text" name="social" autoComplete="socialmedia" disabled={isProcessing} onChange={onInputChange} placeholder="@user (twitter), user@instance (mastodon), @user (insta), .."/>
+          </label>
+
+          <label style={{paddingBottom: 20}}>
+            <input type="checkbox" name="accept_privacy" disabled={isProcessing} onChange={ onCheckboxChange }/>
+            Ich habe die <a href="/Datenschutzvereinsordnung.pdf" target="_blank" className="constrast">Datenschutzvereinsordnung</a> gelesen und akzeptiert
+          </label>
+
           <button aria-busy={isProcessing} disabled={isProcessing} type="submit">Absenden</button>
         </form>
+
+        
+
       </main>
     </>
   );

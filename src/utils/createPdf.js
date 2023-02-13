@@ -34,6 +34,7 @@ async function createPdf(formData) {
     ["zip", "PLZ / Wohnort:"],
     ["phone", "Telefon:"],
     ["email", "E-Mail:"],
+    ["social", "Social-Media:"],
   ].entries()) {
     const y = start_y - index * 30;
 
@@ -51,6 +52,7 @@ async function createPdf(formData) {
   form.getTextField("zip").setText(formData['zip'])
   form.getTextField("phone").setText(formData['phone'])
   form.getTextField("email").setText(formData['email'])
+  form.getTextField("social").setText(formData['social'])
   
   
   let y = 470;
