@@ -1,6 +1,6 @@
 {
     "name": "me-hile-anmeldeformular",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Ein einfaches Anmeldeformular um ein vorausgefülltes PDF zu erzeugen.",
     "scripts": {
       "start": "vite",
